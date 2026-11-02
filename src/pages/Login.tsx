@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { useStore } from '@/store/useStore'
 import { Button } from '@/components/ui/button'
@@ -6,35 +7,71 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Wallet } from 'lucide-react'
 
 export default function Login() {
-    const { login, signup } = useStore()
+    const setUser = useStore((state) => state.setUser)
+
     const [loading, setLoading] = useState(false)
     const [isLogin, setIsLogin] = useState(true)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
 
-        setTimeout(() => {
+        try {
             if (isLogin) {
-                const success = login(email || "demo@zerodividas.com", password || "password")
-                if (!success) {
-                    alert("Usuário ou senha inválidos!")
+                const response = await fetch('http://127.0.0.1:8000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password_hash: password
+                    })
+                })
+
+                const data = await response.json()
+
+                if (!response.ok) {
+                    throw new Error(data.detail || 'Erro ao fazer login.')
                 }
-            } else {
-                const success = signup(name, email, password)
-                if (success) {
-                    alert("Conta criada com sucesso! Faça login.")
-                    setIsLogin(true)
-                    setPassword('') // Clear password for security
-                } else {
-                    alert("Erro ao criar conta. Email já existe?")
-                }
+
+                setUser(data)
+                return
             }
+
+            const response = await fetch('http://127.0.0.1:8000/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    password
+                })
+            })
+
+            const data = await response.json()
+
+            if (!response.ok) {
+                throw new Error(data.detail || 'Erro ao criar conta.')
+            }
+
+            alert('Conta criada com sucesso! Faça login.')
+
+            setIsLogin(true)
+            setName('')
+            setEmail('')
+            setPassword('')
+
+        } catch (error) {
+            alert(error instanceof Error ? error.message : 'Erro ao conectar com o servidor.')
+        } finally {
             setLoading(false)
-        }, 1000)
+        }
     }
 
     return (
@@ -51,6 +88,7 @@ export default function Login() {
                         {isLogin ? 'Entre para gerenciar suas finanças' : 'Crie sua conta gratuitamente'}
                     </CardDescription>
                 </CardHeader>
+
                 <CardContent>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         {!isLogin && (
@@ -64,29 +102,36 @@ export default function Login() {
                                 />
                             </div>
                         )}
+
                         <div className="space-y-2">
                             <Input
                                 type="email"
                                 placeholder="seu@email.com"
                                 required
-                                defaultValue={isLogin ? "demo@zerodividas.com" : email}
+                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
+
                         <div className="space-y-2">
                             <Input
                                 type="password"
                                 placeholder="Sua senha"
                                 required
-                                defaultValue={isLogin ? "password" : password}
+                                value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
+
                         <Button className="w-full" type="submit" disabled={loading}>
-                            {loading ? (isLogin ? 'Entrando...' : 'Criando conta...') : (isLogin ? 'Entrar' : 'Criar Conta')}
+                            {loading
+                                ? (isLogin ? 'Entrando...' : 'Criando conta...')
+                                : (isLogin ? 'Entrar' : 'Criar Conta')}
                         </Button>
+
                         <div className="text-center text-sm text-slate-500">
                             {isLogin ? 'Não tem uma conta? ' : 'Já tem uma conta? '}
+
                             <button
                                 type="button"
                                 onClick={() => setIsLogin(!isLogin)}
