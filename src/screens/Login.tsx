@@ -1,9 +1,9 @@
 
 import { useState } from 'react'
-import { useStore } from '@/store/useStore'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useStore } from '@/src/store/useStore'
+import { Button } from '@/src/components/ui/button'
+import { Input } from '@/src/components/ui/input'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/src/components/ui/card'
 import { Wallet } from 'lucide-react'
 
 export default function Login() {

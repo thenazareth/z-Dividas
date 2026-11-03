@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Account } from "@/utils/mockData"
-import { formatCurrency } from "@/lib/utils"
-import { cn } from "@/lib/utils"
+import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card"
+import { Account } from "@/src/utils/mockData"
+import { formatCurrency } from "@/src/lib/utils"
+import { cn } from "@/src/lib/utils"
 import { Button } from "./ui/button"
 import { Pencil, Trash2 } from "lucide-react"
 

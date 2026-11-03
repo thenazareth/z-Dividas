@@ -1,15 +1,18 @@
-import { useEffect } from 'react'
-import { useStore } from '@/store/useStore'
-import Login from '@/pages/Login'
-import Home from '@/pages/Home'
-import Accounts from '@/pages/Accounts'
-import Statistics from '@/pages/Statistics'
-import { BottomNav } from '@/components/BottomNav'
+'use client'
 
-function App(): JSX.Element {
+import { useEffect } from 'react'
+import { useStore } from '@/src/store/useStore'
+
+import Login from '@/src/screens/Login'
+import Home from '@/src/screens/Home'
+import Accounts from '@/src/screens/Accounts'
+import Statistics from '@/src/screens/Statistics'
+
+import { BottomNav } from '@/src/components/BottomNav'
+
+export default function Page() {
     const { isAuthenticated, activeTab, setActiveTab } = useStore()
 
-    // Reset tab on logout
     useEffect(() => {
         if (!isAuthenticated) {
             setActiveTab('home')
@@ -27,9 +30,11 @@ function App(): JSX.Element {
                 {activeTab === 'accounts' && <Accounts />}
                 {activeTab === 'statistics' && <Statistics />}
             </main>
-            <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
+
+            <BottomNav
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
+            />
         </div>
     )
 }
-
-export default App
