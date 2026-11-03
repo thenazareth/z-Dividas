@@ -1,16 +1,17 @@
+'use client';
 import { useState } from 'react'
-import { useStore } from '@/store/useStore'
-import { formatCurrency, formatDate } from '@/lib/utils'
-import { AccountCard } from '@/components/AccountCard'
-import { AccountModal } from '@/components/AccountModal'
-import { CategoryList } from '@/components/CategoryList'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useStore } from '@/src/store/useStore'
+import { formatCurrency, formatDate } from '@/src/lib/utils'
+import { AccountCard } from '@/src/components/AccountCard'
+import { AccountModal } from '@/src/components/AccountModal'
+import { CategoryList } from '@/src/components/CategoryList'
+import { Button } from '@/src/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/src/components/ui/card'
 import { Plus, Minus, LogOut } from 'lucide-react'
 import { startOfMonth, endOfMonth, isAfter } from 'date-fns'
-import { ThemeToggle } from '@/components/ThemeToggle'
-import { Account } from '@/utils/mockData'
-import { TransactionModal } from '@/components/TransactionModal'
+import { ThemeToggle } from '@/src/components/ThemeToggle'
+import { Account } from '@/src/utils/mockData'
+import { TransactionModal } from '@/src/components/TransactionModal'
 
 export default function Home() {
     const {

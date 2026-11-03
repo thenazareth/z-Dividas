@@ -1,7 +1,7 @@
 
-import { useStore } from '@/store/useStore'
-import { formatCurrency } from '@/lib/utils'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useStore } from '@/src/store/useStore'
+import { formatCurrency } from '@/src/lib/utils'
+import { Card, CardContent, CardHeader, CardTitle } from '@/src/components/ui/card'
 
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts'
 import { startOfMonth, endOfMonth } from 'date-fns'

@@ -1,5 +1,5 @@
 import { Home, Wallet, PieChart } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "@/src/lib/utils"
 
 interface BottomNavProps {
     activeTab: 'home' | 'accounts' | 'statistics'

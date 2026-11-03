@@ -1,0 +1,1 @@
+## Changed from React.js + Python to Next.js (front and back) + Python for microservices.

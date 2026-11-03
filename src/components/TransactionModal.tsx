@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
-import { useStore } from '@/store/useStore'
-import { Modal } from '@/components/ui/modal'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { faker } from '@faker-js/faker'
-import { Transaction } from '@/utils/mockData'
+import { useStore } from '@/src/store/useStore'
+import { Modal } from '@/src/components/ui/modal'
+import { Button } from '@/src/components/ui/button'
+import { Input } from '@/src/components/ui/input'
+import { Transaction } from '@/src/utils/mockData'
 
 interface TransactionModalProps {
     isOpen: boolean

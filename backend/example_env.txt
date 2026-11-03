@@ -1,0 +1,8 @@
+#use this file as your .env replacing the information bellow.
+#do not forget to rename this file ".env" to test the project
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=zDividas_example
+DB_USER=seu_user
+DB_PASSWORD=sua_senha

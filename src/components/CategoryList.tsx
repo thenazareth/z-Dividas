@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { useStore } from '@/store/useStore'
-import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { useStore } from '@/src/store/useStore'
+import { Card, CardContent } from '@/src/components/ui/card'
+import { Button } from '@/src/components/ui/button'
 import { Plus, Pencil, Trash2 } from 'lucide-react'
 import { CategoryModal } from './CategoryModal'
-import { Category } from '@/utils/mockData'
-import { formatCurrency } from '@/lib/utils'
+import { Category } from '@/src/utils/mockData'
+import { formatCurrency } from '@/src/lib/utils'
 
 export function CategoryList() {
     const { categories, deleteCategory, transactions } = useStore()

@@ -1,6 +1,6 @@
-import { useStore } from '@/store/useStore'
-import { Modal } from '@/components/ui/modal'
-import { Button } from '@/components/ui/button'
+import { useStore } from '@/src/store/useStore'
+import { Modal } from '@/src/components/ui/modal'
+import { Button } from '@/src/components/ui/button'
 
 interface FilterModalProps {
     isOpen: boolean

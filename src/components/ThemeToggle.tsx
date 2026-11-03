@@ -1,8 +1,7 @@
+'use client';
 import { useTheme } from '../hooks/useTheme';
-import Moon from '../Assets/Moon.svg';
-import Sun from '../Assets/Sun.svg';
 
-export const ThemeToggle = (): JSX.Element => {
+export const ThemeToggle = () => {
   const { isDark, toggleTheme } = useTheme();
 
   return (
@@ -11,9 +10,8 @@ export const ThemeToggle = (): JSX.Element => {
       className="p-3 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
       aria-label={`Mudar para tema ${isDark ? 'claro' : 'escuro'}`}
     >
-      {/* Use img tag com a URL importada */}
-      <img 
-        src={isDark ? Sun : Moon} 
+      <img
+        src={isDark ? '/assets/Sun.svg' : '/assets/Moon.svg'}
         alt="theme icon"
         className="w-6 h-6"
       />
